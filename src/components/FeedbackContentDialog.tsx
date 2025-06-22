@@ -9,7 +9,7 @@ type FeedbackContentDialogProps = {
 };
 
 const defaultBackgroundColor = '#ffffff';
-const defaultTextColor = '#303235';
+const defaultTextColor = '#121212';
 
 const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
   const [inputValue, setInputValue] = createSignal('');

@@ -263,8 +263,8 @@ const defaultWelcomeMessage = 'Hi there! How can I help?';
 ]*/
 
 const defaultBackgroundColor = '#ffffff';
-const defaultTextColor = '#303235';
-const defaultTitleBackgroundColor = '#3B81F6';
+const defaultTextColor = '#121212';
+const defaultTitleBackgroundColor = '#FF7D00';
 
 /* FeedbackDialog component - for collecting user feedback */
 const FeedbackDialog = (props: {

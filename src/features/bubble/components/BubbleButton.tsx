@@ -12,7 +12,7 @@ type Props = ButtonTheme & {
   autoOpenOnMobile?: boolean; // Optional parameter for opening on mobile
 };
 
-const defaultButtonColor = '#3B81F6';
+const defaultButtonColor = '#FF7D00';
 const defaultIconColor = 'white';
 const defaultBottom = 20;
 const defaultRight = 20;

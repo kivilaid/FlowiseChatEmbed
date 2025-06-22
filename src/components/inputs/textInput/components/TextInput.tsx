@@ -34,7 +34,7 @@ type TextInputProps = {
 };
 
 const defaultBackgroundColor = '#ffffff';
-const defaultTextColor = '#303235';
+const defaultTextColor = '#121212';
 // CDN link for default send sound
 const defaultSendSound = 'https://cdn.jsdelivr.net/gh/FlowiseAI/FlowiseChatEmbed@latest/src/assets/send_message.mp3';
 
