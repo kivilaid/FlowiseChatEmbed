@@ -34,6 +34,7 @@ yarn start          # Start proxy server at http://localhost:3001
 ## Architecture & Code Structure
 
 ### Component Organization
+
 - `/src/features/` - Main chat implementations
   - `bubble/` - Popup chat widget with floating button
   - `full/` - Full-page chat implementation
@@ -43,12 +44,14 @@ yarn start          # Start proxy server at http://localhost:3001
 - `/server.js` - Optional proxy server for enhanced security
 
 ### Key Patterns
+
 - **Web Components**: Exports as custom elements (`<flowise-chatbot>`, `<flowise-fullchatbot>`)
 - **State Management**: Uses Solid.js signals and effects (no external state library)
 - **Path Aliases**: `@/*` maps to `src/*` directory
 - **Theming**: Extensive customization through theme props passed to init()
 
 ### Build Output
+
 - `dist/web.js` - ES module build
 - `dist/web.umd.js` - UMD build for broader compatibility
 
@@ -62,22 +65,26 @@ yarn start          # Start proxy server at http://localhost:3001
 ## Important Implementation Notes
 
 ### Solid.js Specifics
+
 - Components use function syntax, not classes
 - Use `createSignal`, `createEffect`, `Show`, `For` from solid-js
 - Props are accessed directly (not destructured) to maintain reactivity
 - No virtual DOM - updates are fine-grained
 
 ### Tailwind CSS
+
 - Utility classes are used extensively
 - Custom colors and themes are applied via inline styles
 - PostCSS processes Tailwind directives during build
 
 ### Event Streaming
+
 - Uses `@microsoft/fetch-event-source` for SSE support
 - Handles streaming responses from Flowise API
 - Implements retry logic for connection failures
 
 ### File Uploads
+
 - Client-side uses standard file input with base64 encoding
 - Server-side (proxy) uses Multer for multipart handling
 - Supports images and documents based on Flowise configuration
@@ -85,6 +92,7 @@ yarn start          # Start proxy server at http://localhost:3001
 ## Testing Approach
 
 No automated tests are currently implemented. Testing is done manually by:
+
 1. Running `yarn dev`
 2. Updating `public/index.html` with test configurations
 3. Verifying functionality in the browser
@@ -92,6 +100,7 @@ No automated tests are currently implemented. Testing is done manually by:
 ## Proxy Server Configuration
 
 When using the proxy server for enhanced security:
+
 1. Copy `.env.example` to `.env`
 2. Configure `API_HOST`, `FLOWISE_API_KEY`, and agent mappings
 3. Agent format: `agentName=chatflowId,allowedDomain`
