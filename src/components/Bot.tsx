@@ -402,7 +402,7 @@ const FormInputView = (props: {
                     <div class="flex items-center">
                       <input
                         type="checkbox"
-                        class="h-4 w-4 rounded text-blue-600 focus:ring-blue-500"
+                        class="h-4 w-4 rounded text-orange-600 focus:ring-orange-500"
                         style={{
                           border: '1px solid #9ca3af',
                         }}
