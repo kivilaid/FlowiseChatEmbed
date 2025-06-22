@@ -263,8 +263,8 @@ const defaultWelcomeMessage = 'Hi there! How can I help?';
 ]*/
 
 const defaultBackgroundColor = '#ffffff';
-const defaultTextColor = '#303235';
-const defaultTitleBackgroundColor = '#3B81F6';
+const defaultTextColor = '#121212';
+const defaultTitleBackgroundColor = '#FF7D00';
 
 /* FeedbackDialog component - for collecting user feedback */
 const FeedbackDialog = (props: {
@@ -402,7 +402,7 @@ const FormInputView = (props: {
                     <div class="flex items-center">
                       <input
                         type="checkbox"
-                        class="h-4 w-4 rounded text-blue-600 focus:ring-blue-500"
+                        class="h-4 w-4 rounded text-orange-600 focus:ring-orange-500"
                         style={{
                           border: '1px solid #9ca3af',
                         }}

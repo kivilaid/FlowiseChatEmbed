@@ -12,26 +12,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flowise Chatbot Widget</title>
+    <title>Insly AI Chatbot Widget</title>
 </head>
 
 <body>
     <div id="root"></div>
-    <script type="module">
-        import Chatbot from './web.js'
-        
-        // Example initialization:
-        // If your .env contains:
-        // agent1=xyz789-uvw456,https://example.com
-        // support=abc123-def456,https://example.com
-        // salesbot=ghi123-jkl456,https://example.com
-        //
-        // Then use the environment variable name as chatflowid:
-        Chatbot.init({
-            chatflowid: 'agent1',    // or 'support', 'salesbot', etc.
-            apiHost: window.location.origin
-        })
-    </script>
+
+<script type="module">
+    import Chatbot from 'http://localhost:5678/web.js'; // Change to from './web.js' to 'https://localhost:5678/web.js'
+    Chatbot.init({
+      chatflowid: 'f0d7154c-285a-4d44-a917-b978d70e9500', // Add your Flowise chatflowid
+      apiHost: 'https://ai.insly.ai', // Add your Flowise apiHost
+    });
+  </script>
 </body>
 
 </html>
