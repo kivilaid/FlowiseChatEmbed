@@ -7,7 +7,7 @@ A customizable chat widget for embedding Flowise chatbots into any website. Buil
 - 🎨 **Fully Customizable**: Extensive theming options for colors, fonts, and layout
 - 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
 - 🔒 **Secure Proxy Server**: Optional server to hide API keys and control access
-- 💬 **Rich Chat Features**: 
+- 💬 **Rich Chat Features**:
   - File uploads (images and documents)
   - Audio recording and speech-to-text
   - Streaming responses
@@ -29,20 +29,20 @@ Add this to your HTML:
 ```html
 <script type="module">
   import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
-  
+
   Chatbot.init({
     chatflowid: 'your-chatflow-id',
     apiHost: 'https://your-flowise-instance.com',
     theme: {
       button: {
         backgroundColor: '#FF7D00',
-        iconColor: 'white'
+        iconColor: 'white',
       },
       chatWindow: {
         title: 'AI Assistant',
-        welcomeMessage: 'Hello! How can I help you today?'
-      }
-    }
+        welcomeMessage: 'Hello! How can I help you today?',
+      },
+    },
   });
 </script>
 ```
@@ -50,22 +50,26 @@ Add this to your HTML:
 ### Option 2: Self-Hosted with Proxy Server
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/FlowiseAI/FlowiseChatEmbed.git
 cd FlowiseChatEmbed
 ```
 
 2. Install dependencies:
+
 ```bash
 yarn install
 ```
 
 3. Configure environment:
+
 ```bash
 cp .env.example .env
 ```
 
 Edit `.env`:
+
 ```env
 API_HOST=https://your-flowise-instance.com
 FLOWISE_API_KEY=your-api-key
@@ -73,18 +77,20 @@ agent1=chatflow-uuid,https://allowed-domain.com
 ```
 
 4. Start the proxy server:
+
 ```bash
 yarn start
 ```
 
 5. Embed in your website:
+
 ```html
 <script type="module">
   import Chatbot from 'https://your-proxy-domain.com/web.js';
-  
+
   Chatbot.init({
     chatflowid: 'agent1',
-    apiHost: 'https://your-proxy-domain.com'
+    apiHost: 'https://your-proxy-domain.com',
   });
 </script>
 ```
@@ -135,7 +141,7 @@ Chatbot.init({
       size: 'medium', // 'small', 'medium', 'large', or number in pixels
       bottom: 20,
       right: 20,
-      dragAndDrop: true
+      dragAndDrop: true,
     },
     chatWindow: {
       showTitle: true,
@@ -153,13 +159,13 @@ Chatbot.init({
         backgroundColor: '#F3F4F6',
         textColor: '#121212',
         showAvatar: true,
-        avatarSrc: 'https://example.com/bot-avatar.png'
+        avatarSrc: 'https://example.com/bot-avatar.png',
       },
       userMessage: {
         backgroundColor: '#FF7D00',
         textColor: '#FFFFFF',
         showAvatar: true,
-        avatarSrc: 'https://example.com/user-avatar.png'
+        avatarSrc: 'https://example.com/user-avatar.png',
       },
       textInput: {
         placeholder: 'Type your message...',
@@ -168,24 +174,24 @@ Chatbot.init({
         sendButtonColor: '#FF7D00',
         maxChars: 1000,
         autoFocus: true,
-        sendMessageSound: true
+        sendMessageSound: true,
       },
       feedback: {
-        color: '#FF7D00'
+        color: '#FF7D00',
       },
       footer: {
         showFooter: true,
         textColor: '#666666',
         text: 'Powered by',
         company: 'Your Company',
-        companyLink: 'https://yourcompany.com'
+        companyLink: 'https://yourcompany.com',
       },
       dateTimeToggle: {
         date: true,
-        time: true
-      }
-    }
-  }
+        time: true,
+      },
+    },
+  },
 });
 ```
 
@@ -207,7 +213,7 @@ theme: {
     button:hover {
       opacity: 0.9 !important;
     }
-  `
+  `;
 }
 ```
 
@@ -280,7 +286,7 @@ Display agent reasoning for AgentFlows:
 ```javascript
 theme: {
   chatWindow: {
-    showAgentMessages: true
+    showAgentMessages: true;
   }
 }
 ```
@@ -313,6 +319,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 Built with:
+
 - [Solid.js](https://www.solidjs.com/) - Reactive UI framework
 - [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
 - [Rollup](https://rollupjs.org/) - Module bundler
