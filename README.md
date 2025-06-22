@@ -1,357 +1,319 @@
-<!-- markdownlint-disable MD030 -->
+# FlowiseChatEmbed
 
-# Flowise Embed
+A customizable chat widget for embedding Flowise chatbots into any website. Built with Solid.js for performance and flexibility.
 
-Javascript library to display flowise chatbot on your website
+## Features
 
-![Flowise](https://github.com/FlowiseAI/FlowiseChatEmbed/blob/main/images/ChatEmbed.gif?raw=true)
-
-Install:
-
-```bash
-yarn install
-```
-
-Dev:
-
-```bash
-yarn dev
-```
-
-A development server will be running on http://localhost:5678 automatically. Update `public/index.html` to connect directly to Flowise:
-
-```html
-<!-- public/index.html -->
-<script type="module">
-  import Chatbot from 'https://localhost:5678/web.js'; // Change to from './web.js' to 'https://localhost:5678/web.js'
-  Chatbot.init({
-    chatflowid: '91e9c803-5169-4db9-8207-3c0915d71c5f', // Add your Flowise chatflowid
-    apiHost: 'https://your-flowise-instance.com', // Add your Flowise apiHost
-  });
-</script>
-```
-
-Build:
-
-```bash
-yarn build
-```
-
-## Embed in your HTML
-
-### PopUp
-
-```html
-<script type="module">
-  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
-  Chatbot.init({
-    chatflowid: '<chatflowid>',
-    apiHost: 'http://localhost:3000',
-  });
-</script>
-```
-
-### FullPage
-
-```html
-<script type="module">
-  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
-  Chatbot.initFull({
-    chatflowid: '<chatflowid>',
-    apiHost: 'http://localhost:3000',
-  });
-</script>
-<flowise-fullchatbot></flowise-fullchatbot>
-```
-
-To enable full screen, add `margin: 0` to <code>body</code> style, and confirm you don't set height and width
-
-```html
-<body style="margin: 0">
-  <script type="module">
-    import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
-    Chatbot.initFull({
-      chatflowid: '<chatflowid>',
-      apiHost: 'http://localhost:3000',
-      theme: {
-        chatWindow: {
-          // height: 700, don't set height
-          // width: 400, don't set width
-        },
-      },
-    });
-  </script>
-</body>
-```
-
-## Configuration
-
-You can also customize chatbot with different configuration
-
-```html
-<script type="module">
-  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
-  Chatbot.init({
-    chatflowid: '91e9c803-5169-4db9-8207-3c0915d71c5f',
-    apiHost: 'http://localhost:3000',
-    chatflowConfig: {
-      // topK: 2
-    },
-    observersConfig: {
-      // (optional) Allows you to execute code in parent based upon signal observations within the chatbot.
-      // The userinput field submitted to bot ("" when reset by bot)
-      observeUserInput: (userInput) => {
-        console.log({ userInput });
-      },
-      // The bot message stack has changed
-      observeMessages: (messages) => {
-        console.log({ messages });
-      },
-      // The bot loading signal changed
-      observeLoading: (loading) => {
-        console.log({ loading });
-      },
-    },
-    theme: {
-      button: {
-        backgroundColor: '#3B81F6',
-        right: 20,
-        bottom: 20,
-        size: 48, // small | medium | large | number
-        dragAndDrop: true,
-        iconColor: 'white',
-        customIconSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
-        autoWindowOpen: {
-          autoOpen: true, //parameter to control automatic window opening
-          openDelay: 2, // Optional parameter for delay time in seconds
-          autoOpenOnMobile: false, //parameter to control automatic window opening in mobile
-        },
-      },
-      tooltip: {
-        showTooltip: true,
-        tooltipMessage: 'Hi There 👋!',
-        tooltipBackgroundColor: 'black',
-        tooltipTextColor: 'white',
-        tooltipFontSize: 16,
-      },
-      disclaimer: {
-        title: 'Disclaimer',
-        message: 'By using this chatbot, you agree to the <a target="_blank" href="https://flowiseai.com/terms">Terms & Condition</a>',
-        textColor: 'black',
-        buttonColor: '#3b82f6',
-        buttonText: 'Start Chatting',
-        buttonTextColor: 'white',
-        blurredBackgroundColor: 'rgba(0, 0, 0, 0.4)', //The color of the blurred background that overlays the chat interface
-        backgroundColor: 'white',
-        denyButtonText: 'Cancel',
-        denyButtonBgColor: '#ef4444',
-      },
-      form: {
-        backgroundColor: 'white',
-        textColor: 'black',
-      }
-      customCSS: ``, // Add custom CSS styles. Use !important to override default styles
-      chatWindow: {
-        showTitle: true,
-        showAgentMessages: true,
-        title: 'Flowise Bot',
-        titleAvatarSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
-        titleBackgroundColor: '#3B81F6',
-        titleTextColor: '#ffffff',
-        welcomeMessage: 'Hello! This is custom welcome message',
-        errorMessage: 'This is a custom error message',
-        backgroundColor: '#ffffff',
-        backgroundImage: 'enter image path or link', // If set, this will overlap the background color of the chat window.
-        height: 700,
-        width: 400,
-        fontSize: 16,
-        starterPrompts: ['What is a bot?', 'Who are you?'], // It overrides the starter prompts set by the chat flow passed
-        starterPromptFontSize: 15,
-        clearChatOnReload: false, // If set to true, the chat will be cleared when the page reloads
-        sourceDocsTitle: 'Sources:',
-        renderHTML: true,
-        botMessage: {
-          backgroundColor: '#f7f8ff',
-          textColor: '#303235',
-          showAvatar: true,
-          avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png',
-        },
-        userMessage: {
-          backgroundColor: '#3B81F6',
-          textColor: '#ffffff',
-          showAvatar: true,
-          avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png',
-        },
-        textInput: {
-          placeholder: 'Type your question',
-          backgroundColor: '#ffffff',
-          textColor: '#303235',
-          sendButtonColor: '#3B81F6',
-          maxChars: 50,
-          maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 50 characters.',
-          autoFocus: true, // If not used, autofocus is disabled on mobile and enabled on desktop. true enables it on both, false disables it on both.
-          sendMessageSound: true,
-          // sendSoundLocation: "send_message.mp3", // If this is not used, the default sound effect will be played if sendSoundMessage is true.
-          receiveMessageSound: true,
-          // receiveSoundLocation: "receive_message.mp3", // If this is not used, the default sound effect will be played if receiveSoundMessage is true.
-        },
-        feedback: {
-          color: '#303235',
-        },
-        dateTimeToggle: {
-          date: true,
-          time: true,
-        },
-        footer: {
-          textColor: '#303235',
-          text: 'Powered by',
-          company: 'Flowise',
-          companyLink: 'https://flowiseai.com',
-        },
-      },
-    },
-  });
-</script>
-```
-
-## (Experimental) Proxy Server Setup
-
-The Flowise Embed Proxy Server enhances the security of your chatbot implementation by acting as a protective intermediary layer. This server eliminates the need to expose sensitive Flowise instance details in your frontend code and provides several key security benefits:
-
-![Proxy Server](https://github.com/FlowiseAI/FlowiseChatEmbed/blob/main/images/proxyserver.png?raw=true)
-
-- **Enhanced Security**: Conceals your Flowise API host and chatflow IDs from client-side exposure
-- **Access Control**: Implements strict domain-based restrictions for chatbot embedding
-- **Secure Communication**: Acts as a secure gateway for all interactions between your website and Flowise instance
-- **Authentication Management**: Handles API key authentication securely on the server side, away from client exposure
-
-This proxy server can be deployed to any Node.js hosting platform.
+- 🎨 **Fully Customizable**: Extensive theming options for colors, fonts, and layout
+- 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
+- 🔒 **Secure Proxy Server**: Optional server to hide API keys and control access
+- 💬 **Rich Chat Features**: 
+  - File uploads (images and documents)
+  - Audio recording and speech-to-text
+  - Streaming responses
+  - Agent reasoning display
+  - Source documents
+  - Feedback system
+  - Lead capture forms
+  - Starter and follow-up prompts
+- 🎯 **Two Integration Modes**:
+  - Popup widget with floating button
+  - Full-page chat interface
 
 ## Quick Start
 
-1. Configure environment:
+### Option 1: Direct CDN Integration
 
-```bash
-# Copy .env.example to .env and configure required settings:
-API_HOST=https://your-flowise-instance.com
-FLOWISE_API_KEY=your-api-key
+Add this to your HTML:
 
-# Configure your chatflows:
-# Format: [identifier]=[chatflowId],[allowedDomain1],[allowedDomain2],...
-#
-# identifier: Any name you choose (e.g., agent1, support, salesbot)
-# chatflowId: The UUID of your Flowise chatflow
-# allowedDomains: Comma-separated list of domains where this chat can be embedded
-#
-# Examples:
-support=abc123-def456,https://example.com
-agent1=xyz789-uvw456,https://sales.example.com
-helpdesk=ghi123-jkl456,https://help.example.com,https://support.example.com
+```html
+<script type="module">
+  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
+  
+  Chatbot.init({
+    chatflowid: 'your-chatflow-id',
+    apiHost: 'https://your-flowise-instance.com',
+    theme: {
+      button: {
+        backgroundColor: '#FF7D00',
+        iconColor: 'white'
+      },
+      chatWindow: {
+        title: 'AI Assistant',
+        welcomeMessage: 'Hello! How can I help you today?'
+      }
+    }
+  });
+</script>
 ```
 
-2. Install dependencies: (assuming you did not run `yarn install` yet)
+### Option 2: Self-Hosted with Proxy Server
 
+1. Clone the repository:
+```bash
+git clone https://github.com/FlowiseAI/FlowiseChatEmbed.git
+cd FlowiseChatEmbed
+```
+
+2. Install dependencies:
 ```bash
 yarn install
 ```
 
-3. Start proxy server:
+3. Configure environment:
+```bash
+cp .env.example .env
+```
 
+Edit `.env`:
+```env
+API_HOST=https://your-flowise-instance.com
+FLOWISE_API_KEY=your-api-key
+agent1=chatflow-uuid,https://allowed-domain.com
+```
+
+4. Start the proxy server:
 ```bash
 yarn start
-# Server will be available at:
-# - Local:  http://localhost:3001
-# - Cloud:  [Your Platform URL] (e.g., https://your-app.herokuapp.com)
 ```
 
-4. Once the proxy server is running in production, you will be able to embed your chatbots safely without exposing your Flowise API host and chatflow IDs as below:
-
+5. Embed in your website:
 ```html
 <script type="module">
-  import Chatbot from 'your-proxy-server-url/web.js'; // Must be 'your-proxy-server-url/web.js'
+  import Chatbot from 'https://your-proxy-domain.com/web.js';
+  
   Chatbot.init({
-    chatflowid: 'your-identifier-here', // Must match an identifier from your .env
-    apiHost: 'your-proxy-server-url', // Must match the URL of your proxy server
-    chatflowConfig: {
-      // ...
-    },
+    chatflowid: 'agent1',
+    apiHost: 'https://your-proxy-domain.com'
   });
 </script>
 ```
 
-5. (optional) If you want to test any identifier in public/index.html, you can update it as below:
+## Development
 
-```html
-<!-- public/index.html -->
-chatflowid: 'your-identifier-here' // Must match an identifier from your .env
-```
-
-**Important Notes:**
-
-- To ensure secure embedding, you must explicitly whitelist the websites authorized to embed each chatbot. This configuration is done within the .env file. Note that this also applies to your server's URL when deployed to a cloud environment, or http://localhost:3001 for local development, if needed you must whitelist it as well.
-- Wildcard domains (\*) are not supported for security reasons
-- Identifiers are case-insensitive (e.g., 'Support' and 'support' are treated the same)
-
-## Cloud Deployment Requirements
-
-When deploying to cloud platforms, you must configure the environment variables directly in your platform. The proxy server will not start without these variables being properly set. Compatible with Nixpacks for automatic deployment configuration.
-
-## Development Mode (For Local Testing)
-
-1. Configure your environment variables (see above)
-
-2. Start the proxy server:
+### Setup
 
 ```bash
-yarn start
-# Server will be available at:
-# - Local:  http://localhost:3001
-```
+# Install dependencies
+yarn install
 
-3. Update the test page configuration:
-
-- Open `public/index.html` in your code editor
-- Modify the `chatflowid` and `apiHost` to match your `.env` settings:
-
-```html
-<!-- public/index.html -->
-<script type="module">
-  import Chatbot from './web.js';
-  Chatbot.init({
-    chatflowid: 'agent1', // Must match an identifier from your .env
-    apiHost: 'http://localhost:3001', // Change this from window.location.origin to 'http://localhost:3001'
-  });
-</script>
-```
-
-For full page testing, use this configuration instead:
-
-```html
-<!-- public/index.html -->
-<flowise-fullchatbot></flowise-fullchatbot>
-<script type="module">
-  import Chatbot from './web.js';
-  Chatbot.initFull({
-    chatflowid: 'agent1', // Must match an identifier from your .env
-    apiHost: 'http://localhost:3001', // Change this from window.location.origin to 'http://localhost:3001'
-  });
-</script>
-```
-
-4. While the proxy server is running, open a new terminal and start the development server:
-
-```bash
+# Start development server
 yarn dev
-# This will serve the test page on http://localhost:5678 automatically
+
+# Build for production
+yarn build
 ```
 
-5. Test the chatbot:
+### Project Structure
 
-- Navigate to http://localhost:5678
-- The chatbot should now be visible and functional
+```
+src/
+├── features/          # Main chat implementations
+│   ├── bubble/       # Popup widget
+│   └── full/         # Full-page chat
+├── components/       # Reusable UI components
+│   ├── bubbles/     # Message bubbles
+│   ├── buttons/     # Action buttons
+│   ├── icons/       # SVG icons
+│   └── inputs/      # Input components
+├── assets/          # CSS and static assets
+└── utils/           # Utility functions
+```
 
-**Note:** The development URL (http://localhost:5678) is automatically added to allowed domains in development mode. You don't need to add it manually.
+## Customization
+
+### Theme Options
+
+```javascript
+Chatbot.init({
+  chatflowid: 'your-chatflow-id',
+  apiHost: 'https://your-api-host.com',
+  theme: {
+    button: {
+      backgroundColor: '#FF7D00',
+      iconColor: 'white',
+      size: 'medium', // 'small', 'medium', 'large', or number in pixels
+      bottom: 20,
+      right: 20,
+      dragAndDrop: true
+    },
+    chatWindow: {
+      showTitle: true,
+      title: 'AI Assistant',
+      titleAvatarSrc: 'https://example.com/avatar.png',
+      titleTextColor: '#121212',
+      titleBackgroundColor: '#FFFFFF',
+      welcomeMessage: 'Hello! How can I help you today?',
+      backgroundColor: '#FFFFFF',
+      height: 700,
+      width: 400,
+      fontSize: 14,
+      poweredByTextColor: '#666666',
+      botMessage: {
+        backgroundColor: '#F3F4F6',
+        textColor: '#121212',
+        showAvatar: true,
+        avatarSrc: 'https://example.com/bot-avatar.png'
+      },
+      userMessage: {
+        backgroundColor: '#FF7D00',
+        textColor: '#FFFFFF',
+        showAvatar: true,
+        avatarSrc: 'https://example.com/user-avatar.png'
+      },
+      textInput: {
+        placeholder: 'Type your message...',
+        backgroundColor: '#FFFFFF',
+        textColor: '#121212',
+        sendButtonColor: '#FF7D00',
+        maxChars: 1000,
+        autoFocus: true,
+        sendMessageSound: true
+      },
+      feedback: {
+        color: '#FF7D00'
+      },
+      footer: {
+        showFooter: true,
+        textColor: '#666666',
+        text: 'Powered by',
+        company: 'Your Company',
+        companyLink: 'https://yourcompany.com'
+      },
+      dateTimeToggle: {
+        date: true,
+        time: true
+      }
+    }
+  }
+});
+```
+
+### Custom CSS
+
+You can add custom CSS through the theme:
+
+```javascript
+theme: {
+  customCSS: `
+    * {
+      font-family: 'Inter', sans-serif !important;
+    }
+    
+    [part="bot"] {
+      border-radius: 8px !important;
+    }
+    
+    button:hover {
+      opacity: 0.9 !important;
+    }
+  `
+}
+```
+
+## Proxy Server Configuration
+
+The proxy server provides enhanced security and access control:
+
+### Environment Variables
+
+```env
+# Required
+API_HOST=https://your-flowise-instance.com
+FLOWISE_API_KEY=your-api-key-here
+
+# Chatflow mappings (agentName=chatflowId,allowedDomain)
+agent1=abc123-def456,https://example.com
+support=xyz789-uvw456,https://example.com,https://app.example.com
+```
+
+### Features
+
+- **Domain Whitelisting**: Restrict access to specific domains
+- **API Key Protection**: Keep your Flowise API key secure
+- **CORS Handling**: Proper cross-origin configuration
+- **Request Validation**: Ensure only valid requests reach your Flowise instance
+
+## Advanced Features
+
+### File Uploads
+
+Enable file uploads in your chatflow configuration:
+
+```javascript
+// Image uploads
+uploadsConfig: {
+  imgUploadSizeAndTypes: [
+    { fileTypes: ['image/png', 'image/jpeg'], maxUploadSize: 5 }
+  ],
+  isImageUploadAllowed: true
+}
+
+// Document uploads
+uploadsConfig: {
+  fileUploadSizeAndTypes: [
+    { fileTypes: ['application/pdf', 'text/plain'], maxUploadSize: 10 }
+  ],
+  isRAGFileUploadAllowed: true
+}
+```
+
+### Lead Capture
+
+Configure lead capture forms:
+
+```javascript
+leadsConfig: {
+  status: true,
+  title: 'Let us know how to contact you',
+  name: true,
+  email: true,
+  phone: true,
+  successMessage: 'Thank you! We\'ll be in touch soon.'
+}
+```
+
+### Agent Reasoning
+
+Display agent reasoning for AgentFlows:
+
+```javascript
+theme: {
+  chatWindow: {
+    showAgentMessages: true
+  }
+}
+```
+
+## Browser Support
+
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
-Source code in this repository is made available under the [MIT License](https://github.com/FlowiseAI/Flowise/blob/master/LICENSE.md).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+- Documentation: [https://docs.flowiseai.com](https://docs.flowiseai.com)
+- Issues: [GitHub Issues](https://github.com/FlowiseAI/FlowiseChatEmbed/issues)
+- Community: [Discord](https://discord.gg/jbaHfsRVBW)
+
+## Acknowledgments
+
+Built with:
+- [Solid.js](https://www.solidjs.com/) - Reactive UI framework
+- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
+- [Rollup](https://rollupjs.org/) - Module bundler
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
