@@ -1,6 +1,8 @@
-# FlowiseChatEmbed
+# Insly AI Chat Widget
 
-A customizable chat widget for embedding Flowise chatbots into any website. Built with Solid.js for performance and flexibility.
+A customizable chat widget for embedding Insly AI assistants into any website. This widget provides a seamless way to integrate Insly's AI-powered support and sales assistance directly into your web applications.
+
+Built with Solid.js for performance and flexibility, styled with Insly's brand colors and design system.
 
 ## Features
 
@@ -22,24 +24,24 @@ A customizable chat widget for embedding Flowise chatbots into any website. Buil
 
 ## Quick Start
 
-### Option 1: Direct CDN Integration
+### Option 1: Direct Integration
 
 Add this to your HTML:
 
 ```html
 <script type="module">
-  import Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';
+  import Chatbot from 'https://your-domain.com/web.js';
 
   Chatbot.init({
-    chatflowid: 'your-chatflow-id',
-    apiHost: 'https://your-flowise-instance.com',
+    chatflowid: 'chatflow_1',
+    apiHost: 'https://ai.insly.ai',
     theme: {
       button: {
         backgroundColor: '#FF7D00',
         iconColor: 'white',
       },
       chatWindow: {
-        title: 'AI Assistant',
+        title: 'Insly AI Assistant',
         welcomeMessage: 'Hello! How can I help you today?',
       },
     },
@@ -52,8 +54,8 @@ Add this to your HTML:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/FlowiseAI/FlowiseChatEmbed.git
-cd FlowiseChatEmbed
+git clone https://github.com/insly/InslyAIChatWidget.git
+cd InslyAIChatWidget
 ```
 
 2. Install dependencies:
@@ -71,9 +73,10 @@ cp .env.example .env
 Edit `.env`:
 
 ```env
-API_HOST=https://your-flowise-instance.com
+API_HOST=https://ai.insly.ai
 FLOWISE_API_KEY=your-api-key
-agent1=chatflow-uuid,https://allowed-domain.com
+chatflow_1=b1da4aa9-d66a-4f44-8ec5-4d157d061b1a,https://allowed-domain.com
+chatflow_2=f0d7154c-285a-4d44-a917-b978d70e9500,https://allowed-domain.com
 ```
 
 4. Start the proxy server:
@@ -89,7 +92,7 @@ yarn start
   import Chatbot from 'https://your-proxy-domain.com/web.js';
 
   Chatbot.init({
-    chatflowid: 'agent1',
+    chatflowid: 'chatflow_1',
     apiHost: 'https://your-proxy-domain.com',
   });
 </script>
@@ -128,12 +131,23 @@ src/
 
 ## Customization
 
+### Default Insly Theme
+
+The widget comes pre-configured with Insly's brand colors and design system:
+
+- **Primary Color**: Orange (#FF7D00)
+- **Text Color**: Black (#121212)
+- **Background**: White (#FFFFFF)
+- **Bot Messages**: Light gray background (#F3F4F6)
+- **Typography**: Inter font family
+- **Border Radius**: 8px for modern appearance
+
 ### Theme Options
 
 ```javascript
 Chatbot.init({
-  chatflowid: 'your-chatflow-id',
-  apiHost: 'https://your-api-host.com',
+  chatflowid: 'chatflow_1',
+  apiHost: 'https://ai.insly.ai',
   theme: {
     button: {
       backgroundColor: '#FF7D00',
@@ -145,7 +159,7 @@ Chatbot.init({
     },
     chatWindow: {
       showTitle: true,
-      title: 'AI Assistant',
+      title: 'Insly AI Assistant',
       titleAvatarSrc: 'https://example.com/avatar.png',
       titleTextColor: '#121212',
       titleBackgroundColor: '#FFFFFF',
@@ -183,8 +197,8 @@ Chatbot.init({
         showFooter: true,
         textColor: '#666666',
         text: 'Powered by',
-        company: 'Your Company',
-        companyLink: 'https://yourcompany.com',
+        company: 'Insly',
+        companyLink: 'https://insly.com',
       },
       dateTimeToggle: {
         date: true,
@@ -225,12 +239,12 @@ The proxy server provides enhanced security and access control:
 
 ```env
 # Required
-API_HOST=https://your-flowise-instance.com
+API_HOST=https://ai.insly.ai
 FLOWISE_API_KEY=your-api-key-here
 
-# Chatflow mappings (agentName=chatflowId,allowedDomain)
-agent1=abc123-def456,https://example.com
-support=xyz789-uvw456,https://example.com,https://app.example.com
+# Chatflow mappings (name=chatflowId,allowedDomain)
+chatflow_1=b1da4aa9-d66a-4f44-8ec5-4d157d061b1a,https://insly.com
+chatflow_2=f0d7154c-285a-4d44-a917-b978d70e9500,https://app.insly.com
 ```
 
 ### Features
@@ -238,7 +252,7 @@ support=xyz789-uvw456,https://example.com,https://app.example.com
 - **Domain Whitelisting**: Restrict access to specific domains
 - **API Key Protection**: Keep your Flowise API key secure
 - **CORS Handling**: Proper cross-origin configuration
-- **Request Validation**: Ensure only valid requests reach your Flowise instance
+- **Request Validation**: Ensure only valid requests reach your AI backend
 
 ## Advanced Features
 
@@ -281,7 +295,7 @@ leadsConfig: {
 
 ### Agent Reasoning
 
-Display agent reasoning for AgentFlows:
+Display agent reasoning for AI workflows:
 
 ```javascript
 theme: {
@@ -312,9 +326,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- Documentation: [https://docs.flowiseai.com](https://docs.flowiseai.com)
-- Issues: [GitHub Issues](https://github.com/FlowiseAI/FlowiseChatEmbed/issues)
-- Community: [Discord](https://discord.gg/jbaHfsRVBW)
+- Documentation: [https://docs.insly.com/ai-chat](https://docs.insly.com/ai-chat)
+- Issues: [GitHub Issues](https://github.com/insly/InslyAIChatWidget/issues)
+- Support: [support@insly.com](mailto:support@insly.com)
 
 ## Acknowledgments
 
